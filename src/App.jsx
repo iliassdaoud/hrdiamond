@@ -254,16 +254,19 @@ function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/40 bg-white/75 backdrop-blur-2xl">
       <nav
-        className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8"
+        className="mx-auto flex h-24 max-w-7xl items-center justify-between px-4 sm:h-28 sm:px-6 lg:px-8"
         aria-label="Navigation principale"
       >
-        <a href="#accueil" className="group flex items-center gap-3">
-          <span className="relative inline-flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl bg-night shadow-premium">
-            <span className="diamond-frame h-6 w-6 bg-gradient-to-br from-cyan via-white to-gold" />
-          </span>
-          <span className="font-display text-xl font-extrabold text-night sm:text-2xl">
-            HRDIAMOND
-          </span>
+        <a
+          href="#accueil"
+          className="flex items-center rounded-2xl border border-white/70 bg-white/90 px-3 py-2 shadow-[0_14px_38px_rgba(7,20,46,0.14)] backdrop-blur transition hover:-translate-y-0.5 hover:shadow-premium"
+          aria-label="HRDIAMOND"
+        >
+          <img
+            src="/hrdiamond-logo-cropped.png"
+            alt="HRDIAMOND"
+            className="h-16 w-auto object-contain drop-shadow-[0_8px_16px_rgba(7,20,46,0.14)] sm:h-20"
+          />
         </a>
 
         <div className="hidden items-center gap-6 xl:flex">
@@ -295,7 +298,7 @@ function Header() {
 
       {open ? (
         <motion.div
-          className="max-h-[calc(100vh-5rem)] overflow-y-auto border-t border-slate-100 bg-white/95 px-5 py-5 shadow-premium xl:hidden"
+          className="max-h-[calc(100vh-6rem)] overflow-y-auto border-t border-slate-100 bg-white/95 px-5 py-5 shadow-premium sm:max-h-[calc(100vh-7rem)] xl:hidden"
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
@@ -325,7 +328,7 @@ function Hero() {
   return (
     <section
       id="accueil"
-      className="section-anchor relative isolate overflow-hidden bg-white pt-24 sm:pt-28"
+      className="section-anchor relative isolate overflow-hidden bg-white pt-32 sm:pt-36"
     >
       <div className="premium-grid absolute inset-0 -z-10 opacity-80" />
       <div className="absolute inset-x-0 top-0 -z-10 h-[68%] bg-[radial-gradient(ellipse_at_top,#DFFBFF_0%,rgba(255,255,255,0)_58%)]" />
