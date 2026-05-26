@@ -284,17 +284,22 @@ function Header() {
         className="mx-auto flex h-24 max-w-7xl items-center justify-between px-4 sm:h-28 sm:px-6 lg:px-8"
         aria-label="Navigation principale"
       >
-        <a
+        <motion.a
           href="#accueil"
-          className="flex items-center rounded-2xl border border-white/80 bg-white px-2.5 py-2 shadow-[0_16px_46px_rgba(7,20,46,0.16)] backdrop-blur transition hover:-translate-y-0.5 hover:shadow-premium sm:px-3"
+          className="group relative flex items-center rounded-2xl px-1 py-2"
           aria-label="HRDIAMOND"
+          whileHover={{ y: -1 }}
+          whileTap={{ scale: 0.98 }}
         >
-          <img
-            src="/hrdiamond-logo-header.png"
-            alt="HRDIAMOND"
-            className="h-14 w-auto object-contain drop-shadow-[0_8px_16px_rgba(7,20,46,0.12)] sm:h-16"
-          />
-        </a>
+          <motion.span
+            className="bg-gradient-to-r from-night via-[#164C8F] to-gold bg-[length:220%_100%] bg-clip-text font-display text-2xl font-extrabold tracking-[0.04em] text-transparent drop-shadow-[0_10px_24px_rgba(7,20,46,0.14)] sm:text-3xl"
+            animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          >
+            HRDiamond
+          </motion.span>
+          <span className="absolute -bottom-0.5 left-1 h-0.5 w-0 rounded-full bg-gradient-to-r from-cyan to-gold transition-all duration-300 group-hover:w-[calc(100%-0.5rem)]" />
+        </motion.a>
 
         <div className="hidden items-center gap-6 xl:flex">
           {navItems.map((item) => (
