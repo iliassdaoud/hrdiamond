@@ -216,13 +216,35 @@ function IconBadge({ icon: Icon, dark = false }) {
   );
 }
 
-function PrimaryButton({ children, href = WHATSAPP_URL, className = "" }) {
+const buttonBase =
+  "inline-flex min-h-12 w-full max-w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-center text-sm font-bold shadow-premium transition focus:outline-none focus:ring-4 focus:ring-cyan/25 sm:w-auto";
+
+const primaryButtonVariants = {
+  dark: "bg-night text-white hover:bg-ink",
+  gradient:
+    "bg-gradient-to-r from-night via-[#0D2B57] to-night text-white hover:brightness-110",
+  light: "bg-white text-night hover:bg-cyan",
+};
+
+const secondaryButtonVariants = {
+  light:
+    "border border-slate-200 bg-white text-night shadow-sm hover:border-cyan/50 hover:bg-cyan/10",
+  darkGhost:
+    "border border-white/40 bg-white/15 text-white shadow-sm hover:border-cyan/70 hover:bg-white/25",
+};
+
+function PrimaryButton({
+  children,
+  href = WHATSAPP_URL,
+  variant = "dark",
+  className = "",
+}) {
   return (
     <motion.a
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noreferrer" : undefined}
-      className={`group inline-flex min-h-12 w-full max-w-full items-center justify-center gap-2 rounded-full bg-night px-6 py-3 text-center text-sm font-bold text-white shadow-premium transition hover:bg-ink focus:outline-none focus:ring-4 focus:ring-cyan/25 sm:w-auto ${className}`}
+      className={`group ${buttonBase} ${primaryButtonVariants[variant]} ${className}`}
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.98 }}
     >
@@ -235,11 +257,16 @@ function PrimaryButton({ children, href = WHATSAPP_URL, className = "" }) {
   );
 }
 
-function SecondaryButton({ children, href, className = "" }) {
+function SecondaryButton({
+  children,
+  href,
+  variant = "light",
+  className = "",
+}) {
   return (
     <motion.a
       href={href}
-      className={`inline-flex min-h-12 w-full max-w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white/85 px-6 py-3 text-center text-sm font-bold text-night shadow-sm transition hover:border-cyan/50 hover:bg-white focus:outline-none focus:ring-4 focus:ring-cyan/20 sm:w-auto ${className}`}
+      className={`${buttonBase} ${secondaryButtonVariants[variant]} focus:ring-cyan/20 ${className}`}
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.98 }}
     >
@@ -259,13 +286,13 @@ function Header() {
       >
         <a
           href="#accueil"
-          className="flex items-center rounded-2xl border border-white/70 bg-white/90 px-3 py-2 shadow-[0_14px_38px_rgba(7,20,46,0.14)] backdrop-blur transition hover:-translate-y-0.5 hover:shadow-premium"
+          className="flex items-center rounded-2xl border border-white/80 bg-white px-2.5 py-2 shadow-[0_16px_46px_rgba(7,20,46,0.16)] backdrop-blur transition hover:-translate-y-0.5 hover:shadow-premium sm:px-3"
           aria-label="HRDIAMOND"
         >
           <img
-            src="/hrdiamond-logo-cropped.png"
+            src="/hrdiamond-logo-header.png"
             alt="HRDIAMOND"
-            className="h-16 w-auto object-contain drop-shadow-[0_8px_16px_rgba(7,20,46,0.14)] sm:h-20"
+            className="h-14 w-auto object-contain drop-shadow-[0_8px_16px_rgba(7,20,46,0.12)] sm:h-16"
           />
         </a>
 
@@ -350,9 +377,9 @@ function Hero() {
             formation professionnelle et accompagnement RH.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row">
-            <PrimaryButton
-              href={WHATSAPP_URL}
-              className="bg-gradient-to-r from-night via-[#0D2B57] to-night"
+          <PrimaryButton
+            href={WHATSAPP_URL}
+              variant="gradient"
             >
               Discuter sur WhatsApp
             </PrimaryButton>
@@ -559,13 +586,13 @@ function RecruitmentSection() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <PrimaryButton
               href={WHATSAPP_URL}
-              className="bg-white text-night hover:bg-cyan"
+              variant="light"
             >
               Lancer une mission
             </PrimaryButton>
             <SecondaryButton
               href="#contact"
-              className="border-white/20 bg-white/10 text-white hover:bg-white/15"
+              variant="darkGhost"
             >
               Recevoir un avis RH
             </SecondaryButton>
@@ -807,7 +834,7 @@ function CtaSection() {
             </div>
             <PrimaryButton
               href={WHATSAPP_URL}
-              className="bg-white text-night hover:bg-cyan"
+              variant="light"
             >
               Contacter HRDIAMOND sur WhatsApp
             </PrimaryButton>
